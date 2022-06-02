@@ -1,3 +1,3 @@
-## [](#header-2)Libft
+### Libft
 
-Implementación de las funciones básicas más usadas en C.
+Basic C functions implementation.
