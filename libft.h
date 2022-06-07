@@ -20,15 +20,49 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+/**
+ * @return True if 'c' is alphanumeric.
+ */
 int		ft_isalpha(int c);
+/**
+ * @return True if 'c' is digit(0-9).
+ */
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+/**
+ * @return True if 'c' is printable.
+ */
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *s);
+/**
+ * Fills the first n bytes of the memory area pointed to by 'b' with 
+ * the constant byte c.
+ * 
+ * @param[in] b Pointer to memory to fill.
+ * @param[in] c Byte to fill with.
+ * @param[in] len Number of bytes to fill.
+ */
 void	*ft_memset(void *b, int c, size_t len);
+/**
+ * Erases the data in the n bytes of the memory starting at the location 
+ * pointed to by 's', by writing zeros (bytes containing '\0') to that area.
+ * 
+ * @param[in] s Pointer to memory where to fill with zeros.
+ * @param[in] n Number of bytes.
+ */
 void	ft_bzero(void *s, size_t n);
+/**
+ * Copies n bytes from memory area src to memory area dest.
+ * 
+ * @param[in] dest Where the copy will be saved.
+ * @param[in] src Source to be copied.
+ * @param[in] n Number of bytes.
+ *
+ * @return Pointer to dest
+ */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
