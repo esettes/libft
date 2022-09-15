@@ -1,33 +1,62 @@
-SRCS	= ft_bzero.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memset.c ft_strlen.c \
-		ft_isalpha.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c \
-		ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
-		ft_strnstr.c ft_atoi.c ft_calloc.c ft_isalnum.c ft_strdup.c ft_substr.c ft_strjoin.c \
-		ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-OBJS	= ${SRCS:.c=.o}
-SRCSB	= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
-		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-		ft_lstmap_bonus.c
-OBJB	= ${SRCSB:.c=.o}
+GREEN	= \033[0;32m
+WHITE	= \033[0;37m
+BWHITE	= \033[1;37m
+LGREEN	= \033[2;32m
+LWHITE	= \033[2;37m
+RESET	= \033[2;33m
+
+SRCDIR	= ./src/
+SRCNAMES	= $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRCS	= $(addprefix $(SRCDIR), $(SRCNAMES))
+
+OBJDIR	= ./obj/
+OBJS	= $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))
+
+B_SRCDIR	= ./bonus/
+B_SRCNAMES	= $(shell ls $(B_SRCDIR) | grep -E ".+\.c")
+B_SRCS	= $(addprefix $(B_SRCDIR), $(B_SRCNAMES))
+OBJB	= $(addprefix $(OBJDIR), $(B_SRCNAMES:.c=.o))
+
 NAME	= libft.a
 BONUS	= .
 CC  = gcc
 RM  = rm -f
 CFLAGS  = -Wall -Wextra -Werror
 AR = ar rc
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-${NAME}:	${OBJS}
-		${AR} ${NAME} ${OBJS}
-		ranlib ${NAME}
+
+HEADER	= -I include -I ./inc/
+
+$(OBJDIR)%.o:$(SRCDIR)%.c
+#	@echo "${LWHITE}Compiling $(notdir $<) ${LGREEN}✓$(RESET)"
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
+
+#Change libx42_flags position at the end of the coommand
+$(NAME):	$(OBJS)
+	@${AR} ${NAME} ${OBJS}
+	@ranlib ${NAME}
+	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
+	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)\033[2;33m" 
+
+$(OBJDIR)%.o:$(B_SRCDIR)%.c
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
+
 ${BONUS}:	${OBJS} ${OBJB}
-		${AR}	${NAME} ${OBJB}
-		ranlib ${NAME}
+		@${AR}	${NAME} ${OBJB}
+		@ranlib ${NAME}
+
 bonus:	${BONUS}
+
 all:	${NAME}
+
 clean:
-		${RM} ${OBJS} ${OBJB}
+		@${RM} ${OBJS} ${OBJB}
+
 fclean:	clean
-		${RM} ${NAME}
+		@${RM} ${NAME}
+		@echo "${BWHITE}Clean all ${GREEN}[OK]\033[2;33m"
+
 re:		fclean all bonus
+
 .PHONY:	all clean fclean re

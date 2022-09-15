@@ -1,3 +1,3 @@
 ### Libft
 
-Basic C functions implementation.
+C functions implementation.

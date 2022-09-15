@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -24,9 +24,3 @@ void	*ft_calloc(size_t count, size_t size)
 	return (res);
 }
 
-int main()
-{
-	char *s;
-
-	s = ft_calloc(SIZE_MAX, SIZE_MAX);
-}
