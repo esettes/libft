@@ -27,16 +27,14 @@ AR = ar rc
 HEADER	= -I include -I ./inc/
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-#	@echo "${LWHITE}Compiling $(notdir $<) ${LGREEN}✓$(RESET)"
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
 
-#Change libx42_flags position at the end of the coommand
 $(NAME):	$(OBJS)
 	@${AR} ${NAME} ${OBJS}
 	@ranlib ${NAME}
-	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)\033[2;33m"
-	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)\033[2;33m" 
+	@echo "${LWHITE}$(NAME) ${LGREEN}✓$(RESET)"
+	@echo "${BWHITE}Compilation ${GREEN}[OK]$(RESET)" 
 
 $(OBJDIR)%.o:$(B_SRCDIR)%.c
 	@mkdir -p $(OBJDIR)
@@ -55,7 +53,7 @@ clean:
 
 fclean:	clean
 		@${RM} ${NAME}
-		@echo "${BWHITE}Clean all ${GREEN}[OK]\033[2;33m"
+		@echo "${BWHITE}Clean all ${GREEN}[OK]$(RESET)"
 
 re:		fclean all bonus
 
