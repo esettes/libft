@@ -65,9 +65,28 @@ void	ft_bzero(void *s, size_t n);
  * @return Pointer to dest
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-
 void	*ft_memmove(void *dest, const void *src, size_t n);
+/**
+ * copies up to size - 1 characters from the NUL-terminated string src to dst,
+ * NUL-terminating the result.
+ * 
+ * @param[in] dest Where the copy will be saved.
+ * @param[in] src Source to be copied.
+ * @param[in] size Number of bytes.
+ * 
+ * @return The total length of [src].
+*/
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+/**
+ * Appends the NUL-terminated string src to the end of dst. It will append at 
+ * most size - strlen(dst) - 1 bytes, NUL-terminating the result.
+ * 
+ * @param[in] dest Where src will be appended.
+ * @param[in] src Source to be appended.
+ * @param[in] size Number of bytes.
+ * 
+ * @return The total length of [src] + [dst].
+*/
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
