@@ -92,6 +92,16 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+/**
+ * Compares the first (at most) n bytes of s1 and s2.
+ * 
+ * @param[in] s1 String to be compared.
+ * @param[in] s2 String to be compared.
+ * @param[in] n Number of bytes to compare.
+ * 
+ * @return An integer less than, equal to, or greater than zero if s1 is found,
+ * respectively, to be less than, to match, or be greater than s2.
+*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
